@@ -553,8 +553,12 @@
         });
         html += `</div>`;
       } else if (w.cover) {
-        html += `<img src="${src}" alt="${w.title}" loading="lazy" />`;
-      }
+  html += `
+    <div class="detail-cover">
+      <img src="${w.cover}" alt="${w.title}" loading="lazy" />
+    </div>
+  `;
+}
       html += `<div class="detail-body">${w.body}</div>`;
       html += `<div class="detail-nav">`;
       html += prev ? `<span onclick="showWork('${prev.id}')">← ${prev.title}</span>` : `<span></span>`;
