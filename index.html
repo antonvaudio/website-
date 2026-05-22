@@ -172,26 +172,26 @@
       border: none; display: block;
     }
 
-   .detail-cover {
-   width: 100%;
-    margin-bottom: 1.5rem;
+    .detail-cover {
+      width: 100%;
+      margin-bottom: 1.5rem;
     }
-  .detail-cover img {
-  width: 100%; height: auto;
-  display: block;
-  }
+    .detail-cover img {
+      width: 100%; height: auto;
+      display: block;
+    }
 
-  .detail-images {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  }
-  .detail-images img {
-  width: 100%; height: auto;
-  display: block;
-  }
-  
+    .detail-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .detail-images img {
+      width: 100%; height: auto;
+      display: block;
+    }
+
     .detail-body {
       max-width: 600px;
     }
@@ -321,6 +321,7 @@
       nav { padding: 0 1.25rem; }
       .nav-links { gap: 1.25rem; }
       .detail-wrap, .about-wrap, .contact-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .detail-images { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .grid { grid-template-columns: 1fr; }
@@ -367,7 +368,6 @@
   <div class="screen" id="screen-contact">
     <div class="contact-wrap">
       <form class="cform" id="cform" novalidate>
-        <!-- Get free key at https://web3forms.com — enter your email, paste key below -->
         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
         <input type="hidden" name="subject" value="New message — antonvaudio.uk" />
         <input type="checkbox" name="botcheck" style="display:none;" />
@@ -406,12 +406,11 @@
   </footer>
 
   <script>
-    // ── WORKS DATA ──
     const works = [
       {
         id: 'kissyris',
         title: 'Kissyris',
-        thumb: 'Still+2026-05-14+003125_1.1.1.jpg.jpeg?format=750w',
+        thumb: 'images/Still+2026-05-14+003125_1.1.1.jpg.jpeg',
         youtube: 'd4XbtKQDlgg',
         body: `<p><strong>Description</strong><br/><em>Kissyris</em> is a moving image work created in response to Avlaki in Nisyros, engaging with the landscape and memories of the place. The film unfolds through a cyanotype performance with light reflections from glass bottles.</p>
         <p>Its layered soundtrack brings together field recordings from the village festival that took place a few days earlier, alongside an original musical composition accompanying the video. Filmed in Nisyros, Greece.</p>
@@ -426,18 +425,18 @@
         <p>A custom breath sensor shapes a continuous drone, while projected particles respond in real time, creating a meditative, dreamlike space. Filmed at Edinburgh College of Art in August 2025, with the support of the <em>Immersive Arts Fund</em>, the work invites audiences to experience the act of breathing as both creation and connection.</p>`
       },
       {
-       id: 'explore',
-      title: 'Explore',
-      thumb: '01.webp',
-      images: ['images/01.webp', 'images/IMG_0084_jpg.webp', 'images/03.webp', 'images/02.webp'],
-      body: `<p><strong>Description</strong><br/>
-      Thrilled to share that I received Explore strand funding from Immersive Arts to support the early stages of developing my new project surrender(d).</p>
-      <p>This fund gave me the space (and time) to dig into immersive technology; not to master it, but to get lost in it a bit, to see what happens when you let go of polished outcomes and just explore. I spent the last few months testing things, failing, building again, and following where the work wanted to go.</p>
-      <p>As part of this, I visited some incredible exhibitions and shows in Isle of Lewis, Liverpool, and Bradford; each one nudging the project in new directions.</p>
-      <p>The support also helped me get my hands on some essential tools; sensors, software, books — things that will stay with me long after this phase ends.</p>
-      <p>I shared a work-in-progress at Surge in Glasgow, and the feedback there was generous, thoughtful, and exactly what I needed. Thank you to everyone who engaged with the piece; it really mattered.</p>
-      <p>Since then, I've been pulling the threads together, reworking the installation, experimenting with interaction, sound, and space. It's not done yet. But it's getting there.</p>
-      <p>More soon x</p>`
+        id: 'explore',
+        title: 'Explore',
+        thumb: 'images/01.webp',
+        images: ['images/01.webp', 'images/IMG_0084_jpg.webp', 'images/03.webp', 'images/02.webp'],
+        body: `<p><strong>Description</strong><br/>
+        Thrilled to share that I received Explore strand funding from Immersive Arts to support the early stages of developing my new project surrender(d).</p>
+        <p>This fund gave me the space (and time) to dig into immersive technology; not to master it, but to get lost in it a bit, to see what happens when you let go of polished outcomes and just explore. I spent the last few months testing things, failing, building again, and following where the work wanted to go.</p>
+        <p>As part of this, I visited some incredible exhibitions and shows in Isle of Lewis, Liverpool, and Bradford; each one nudging the project in new directions.</p>
+        <p>The support also helped me get my hands on some essential tools; sensors, software, books — things that will stay with me long after this phase ends.</p>
+        <p>I shared a work-in-progress at Surge in Glasgow, and the feedback there was generous, thoughtful, and exactly what I needed. Thank you to everyone who engaged with the piece; it really mattered.</p>
+        <p>Since then, I've been pulling the threads together, reworking the installation, experimenting with interaction, sound, and space. It's not done yet. But it's getting there.</p>
+        <p>More soon x</p>`
       },
       {
         id: 'avoid-void',
@@ -530,12 +529,14 @@
         html += `<div class="detail-embed"><iframe src="https://www.youtube.com/embed/${w.youtube}" allowfullscreen></iframe></div>`;
       }
       if (w.images && w.images.length) {
-     w.images.forEach(src => {
-    html += `<div class="detail-cover"><img src="${src}" alt="${w.title}" loading="lazy" /></div>`;
-    });
-    } else if (w.cover) {
-     html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
-    }
+        html += `<div class="detail-images">`;
+        w.images.forEach(src => {
+          html += `<img src="${src}" alt="${w.title}" loading="lazy" />`;
+        });
+        html += `</div>`;
+      } else if (w.cover) {
+        html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
+      }
       html += `<div class="detail-body">${w.body}</div>`;
       html += `<div class="detail-nav">`;
       html += prev ? `<span onclick="showWork('${prev.id}')">← ${prev.title}</span>` : `<span></span>`;
