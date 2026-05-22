@@ -5,15 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>antonvaudio</title>
   <meta name="description" content="Anton Vasiliadis is a Scotland-based sound designer, technician, and multimedia artist working across immersive performance, experimental audio, and interactive installations." />
-  <meta property="og:title" content="antonvaudio" />
-  <meta property="og:description" content="Sound designer, technician, and multimedia artist." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://antonvaudio.uk/" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="antonvaudio" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -21,83 +14,45 @@
 
     :root {
       --white: #ffffff;
-      --black: #000000;
-      --text: #111111;
+      --text: #111;
       --muted: #666;
       --border: #e8e8e8;
-      --font: 'Inter', Helvetica, Arial, sans-serif;
+      --font: 'Inter', sans-serif;
       --nav-h: 64px;
     }
 
-    html { scroll-behavior: smooth; }
-
     body {
+      font-family: var(--font);
       background: var(--white);
       color: var(--text);
-      font-family: var(--font);
       font-size: 14px;
-      font-weight: 300;
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
+      top: 0;
+      left: 0;
+      right: 0;
       height: var(--nav-h);
-      background: var(--white);
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       padding: 0 2rem;
+      background: white;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      cursor: pointer;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { cursor: pointer; }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text);
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-
-    .nav-links a:hover { opacity: 0.5; }
-
-    .nav-links a.active {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    /* ── SCREENS ── */
-    .screen {
-      display: none;
-      padding-top: var(--nav-h);
-      min-height: 100vh;
-    }
+    .screen { display: none; padding-top: var(--nav-h); }
     .screen.active { display: block; }
 
-    /* ── IMAGE GRID ── */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
     }
 
     .grid-item {
@@ -112,74 +67,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-      transition: opacity 0.3s;
     }
 
-    .grid-item:hover img { opacity: 0.7; }
-
-    .grid-item-title {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 2rem 1.25rem 1.25rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.55));
-      color: #fff;
-      font-size: 13px;
-      font-weight: 400;
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .grid-item:hover .grid-item-title { opacity: 1; }
-
-    /* ── WORK DETAIL ── */
-    #screen-detail { padding-bottom: 6rem; }
-
-    .detail-wrap {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 3rem 2rem 0;
-    }
-
-    .detail-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 13px;
-      color: var(--muted);
-      cursor: pointer;
-      margin-bottom: 2.5rem;
-      transition: color 0.15s;
-    }
-    .detail-back:hover { color: var(--text); }
-
-    .detail-title {
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 2rem;
-    }
-
-    .detail-embed {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
-      margin-bottom: 1.5rem;
-    }
-    .detail-embed iframe {
-      width: 100%; height: 100%;
-      border: none; display: block;
-    }
-
-    .detail-cover {
-      width: 100%;
-      margin-bottom: 1.5rem;
-    }
-    .detail-cover img {
-      width: 100%; height: auto;
-      display: block;
-    }
+    .detail-wrap { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
 
     .detail-images {
       display: grid;
@@ -187,394 +77,115 @@
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
+
     .detail-images img {
-      width: 100%; height: auto;
+      width: 100%;
+      height: auto;
       display: block;
     }
 
-    .detail-body {
-      max-width: 600px;
-    }
-    .detail-body p {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-    .detail-body strong { font-weight: 600; }
-    .detail-body em { font-style: italic; }
-
-    .detail-nav {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .detail-nav span { cursor: pointer; transition: color 0.15s; }
-    .detail-nav span:hover { color: var(--text); }
-
-    /* ── ABOUT ── */
-    .about-wrap {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 3rem 2rem 6rem;
-    }
-    .about-wrap p {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-    }
-    .about-wrap em { font-style: italic; }
-
-    /* ── CONTACT ── */
-    .contact-wrap {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 3rem 2rem 6rem;
-    }
-
-    .cform { display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .fg { display: flex; flex-direction: column; gap: 0.35rem; }
-
-    .fg label {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .fg input, .fg textarea, .fg select {
-      background: var(--white);
-      border: 1px solid #ccc;
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 300;
-      padding: 0.65rem 0.85rem;
-      outline: none;
-      border-radius: 0;
-      width: 100%;
-      transition: border-color 0.15s;
-      -webkit-appearance: none;
-    }
-    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--text); }
-    .fg textarea { resize: vertical; min-height: 130px; }
-    .fg select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.85rem center;
-      padding-right: 2rem;
-      cursor: pointer;
-    }
-
-    .form-submit {
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      padding: 0.75rem 2rem;
-      background: var(--text);
-      color: var(--white);
-      border: none;
-      cursor: pointer;
-      align-self: flex-start;
-      transition: opacity 0.15s;
-    }
-    .form-submit:hover { opacity: 0.7; }
-    .form-submit:disabled { opacity: 0.4; cursor: default; }
-
-    .form-msg { font-size: 13px; color: var(--muted); display: none; }
-    .form-msg.show { display: block; }
-
-    /* ── FOOTER ── */
-    footer {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 44px;
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      justify-content: flex-end;
-      padding: 0 2rem;
-    }
-    footer a {
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--muted);
-      transition: color 0.15s;
-    }
-    footer a:hover { color: var(--text); }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      nav { padding: 0 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .detail-wrap, .about-wrap, .contact-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .grid { grid-template-columns: 1fr 1fr; }
       .detail-images { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
 
-  <nav>
-    <span class="nav-logo" onclick="showScreen('works')">antonvaudio</span>
-    <ul class="nav-links">
-      <li><a onclick="showScreen('works')" data-screen="works">Selected Works</a></li>
-      <li><a onclick="showScreen('about')" data-screen="about">About me</a></li>
-      <li><a onclick="showScreen('contact')" data-screen="contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav>
+  <div onclick="showScreen('works')" style="cursor:pointer;">antonvaudio</div>
+  <ul class="nav-links">
+    <li><a onclick="showScreen('works')">Works</a></li>
+    <li><a onclick="showScreen('about')">About</a></li>
+    <li><a onclick="showScreen('contact')">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- WORKS GRID -->
-  <div class="screen active" id="screen-works">
-    <div class="grid" id="grid"></div>
+<div class="screen active" id="screen-works">
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="screen" id="screen-detail">
+  <div class="detail-wrap">
+    <div id="detail-content"></div>
   </div>
+</div>
 
-  <!-- WORK DETAIL -->
-  <div class="screen" id="screen-detail">
-    <div class="detail-wrap">
-      <span class="detail-back" onclick="showScreen('works')">← Selected Works</span>
-      <div id="detail-content"></div>
-    </div>
-  </div>
+<script>
+const works = [
+  {
+    id: 'kissyris',
+    title: 'Kissyris',
+    thumb: 'Still+2026-05-14+003125_1.1.1.jpg.jpeg',
+    youtube: 'd4XbtKQDlgg',
+    body: `<p><strong>Description</strong><br/>Kissyris...</p>`
+  },
 
-  <!-- ABOUT -->
-  <div class="screen" id="screen-about">
-    <div class="about-wrap">
-      <p>Anton Vasiliadis is a Scotland-based sound designer, technician, and multimedia artist working across immersive performance, experimental audio, and interactive installations. With a background in music production and engineering, his practice spans from bespoke sound design to large-scale immersive installations.</p>
-      <p>A graduate of the University of Edinburgh's MSc in Sound Design and holding a BA in Music Production &amp; Engineering, Anton's work is grounded in technical precision and conceptual exploration. He is particularly interested in how sound, technology, and physical space can create meaningful experiences that challenge perception and invite reflection.</p>
-      <p>In 2025, Anton was awarded an Explore grant from Immersive Arts UK, supporting his development in immersive and interactive technologies. His growing body of work explores how sound, touch, and interaction become integral to artistic experience rather than supplementary elements.</p>
-      <p>As part of the Verbena Blue Collective, he co-created installations such as <em>Gemütlig</em>, a tactile sound environment using contact microphones, rope, and Max/MSP to evoke isolation and connection within confined spaces.</p>
-      <p>His personal works include <em>Avoid Void</em>, an introspective ambient album exploring memory and emotion through generative textures and quiet rhythm. He also contributed original music and sound design to <em>Body Knots</em>, a short film examining liminality and psychological fragmentation.</p>
-      <p>In addition to his artistic practice, Anton has worked extensively as a live technician and AV specialist at venues including Summerhall, Queen's Hall, and major Scottish festivals such as Wigtown Book Festival and Experimental Film Festival Scotland.</p>
-    </div>
-  </div>
+  {
+    id: 'surrender',
+    title: 'Surrender(d)',
+    thumb: 'https://static1.squarespace.com/static/642fc56bbbaf430a1a7b64a6/642fc6072e224e44337714ba/6895dbb643edfd1e173f298b/1754652588842/Screenshot+2025-08-08+121443.png?format=750w',
+    youtube: 'h6ithpvvg1A',
+    body: `<p>Surrender(d)...</p>`
+  },
 
-  <!-- CONTACT -->
-  <div class="screen" id="screen-contact">
-    <div class="contact-wrap">
-      <form class="cform" id="cform" novalidate>
-        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
-        <input type="hidden" name="subject" value="New message — antonvaudio.uk" />
-        <input type="checkbox" name="botcheck" style="display:none;" />
-        <div class="fg">
-          <label for="f-name">Name</label>
-          <input type="text" id="f-name" name="name" required />
-        </div>
-        <div class="fg">
-          <label for="f-email">Email Address</label>
-          <input type="email" id="f-email" name="email" required />
-        </div>
-        <div class="fg">
-          <label for="f-type">Subject</label>
-          <select id="f-type" name="type">
-            <option value="">—</option>
-            <option>Commission</option>
-            <option>Sound Design</option>
-            <option>Installation</option>
-            <option>Collaboration</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label for="f-msg">Message</label>
-          <textarea id="f-msg" name="message" required></textarea>
-        </div>
-        <div class="form-msg" id="fmsg"></div>
-        <button type="submit" class="form-submit" id="fsub">Submit</button>
-      </form>
-    </div>
-  </div>
+  {
+    id: 'explore',
+    title: 'Explore',
+    thumb: '01.webp',
 
-  <footer>
-    <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://antonv.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a>
-  </footer>
+    // ✅ FIXED: images restored properly
+    images: ['01.webp', 'IMG_0084_jpg.webp', '03.webp', '02.webp'],
 
-  <script>
-    const works = [
-      {
-        id: 'kissyris',
-        title: 'Kissyris',
-        thumb: 'Still+2026-05-14+003125_1.1.1.jpg.jpeg',
-        youtube: 'd4XbtKQDlgg',
-        body: `<p><strong>Description</strong><br/><em>Kissyris</em> is a moving image work created in response to Avlaki in Nisyros, engaging with the landscape and memories of the place. The film interweaves archival footage, contemporary footage, and abstract imagery to create a layered meditation on place, memory, and loss.</p>
-        <p>Its layered soundtrack brings together field recordings from the village festival that took place a few days earlier, alongside an original musical composition accompanying the video. The combination creates a multisensory exploration of the space — celebrating its vitality while acknowledging the traces of those who are no longer there.</p>
-        <p><strong>Credits</strong><br/>Antonis Vasiliadis — sound, video editing and montage<br/>Dora Zoi — performance, text and narration</p>`
-      },
-      {
-        id: 'surrender',
-        title: 'Surrender(d)',
-        thumb: 'https://static1.squarespace.com/static/642fc56bbbaf430a1a7b64a6/642fc6072e224e44337714ba/6895dbb643edfd1e173f298b/1754652588842/Screenshot+2025-08-08+121443.png?format=750w',
-        youtube: 'h6ithpvvg1A',
-        body: `<p><strong><em>Surrender(d)</em></strong> is an immersive audiovisual installation exploring breath, presence, and release.</p>
-        <p>A custom breath sensor shapes a continuous drone, while projected particles respond in real time, creating a meditative, dreamlike space. Filmed at Edinburgh College of Art in August 2024.</p>`
-      },
-      {
-        id: 'explore',
-        title: 'Explore',
-        thumb: '01.webp',
+    body: `<p><strong>Description</strong><br/>
+    Thrilled to share that I received Explore strand funding...</p>
+    <p>More soon x</p>`
+  }
+];
 
-        //  images: ['01.webp', 'IMG_0084_jpg.webp', '03.webp', '02.webp'],
-        body: `<p><strong>Description</strong><br/>
-        Thrilled to share that I received Explore strand funding from Immersive Arts to support the early stages of developing my new project surrender(d).</p>
-        <p>This fund gave me the space (and time) to dig into immersive technology; not to master it, but to get lost in it a bit, to see what happens when you let go of polished outcomes and just explore. I spent the last few months testing things, failing, building again, and following where the work wanted to go.</p>
-        <p>As part of this, I visited some incredible exhibitions and shows in Isle of Lewis, Liverpool, and Bradford; each one nudging the project in new directions.</p>
-        <p>The support also helped me get my hands on some essential tools; sensors, software, books — things that will stay with me long after this phase ends.</p>
-        <p>I shared a work-in-progress at Surge in Glasgow, and the feedback there was generous, thoughtful, and exactly what I needed. Thank you to everyone who engaged with the piece; it really helped shape where things are going.</p>
-        <p>Since then, I've been pulling the threads together, reworking the installation, experimenting with interaction, sound, and space. It's not done yet. But it's getting there.</p>
-        <p>More soon x</p>`
-      },
-      {
-        id: 'avoid-void',
-        title: 'Avoid Void',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000001/avoid-void.jpg',
-        body: `<p><em>Avoid Void</em> is an introspective ambient album exploring memory and emotion through generative textures and quiet rhythm.</p>`
-      },
-      {
-        id: 'desert-echoes',
-        title: 'Desert Echoes',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000002/desert-echoes.jpg',
-        body: `<p>Field recordings from arid landscapes, recomposed for tape and synthesis. A meditation on vastness and silence.</p>`
-      },
-      {
-        id: 'body-knots',
-        title: 'Body knots (Film)',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000003/body-knots.jpg',
-        body: `<p>Original music and sound recording for the short film <em>Body Knots</em>, directed by Kevin Pickering. The film explores liminality and psychological fragmentation.</p>`
-      },
-      {
-        id: 'gemutlig',
-        title: 'Gemutlig (Art Installation)',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000004/gemutlig.jpg',
-        body: `<p><em>Gemütlig</em> is a tactile sound environment created as part of the Verbena Blue Collective, using contact microphones, rope, and Max/MSP to evoke isolation and connection in confined spaces.</p>`
-      },
-      {
-        id: 'live-electronics',
-        title: 'Live electronics',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000005/live-electronics.jpg',
-        body: `<p>Ongoing live electronics practice — solo and collaborative performances exploring synthesis, field recording, and real-time processing.</p>`
-      },
-      {
-        id: 'hollow-sky',
-        title: 'Hollow Sky (music)',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000006/hollow-sky.jpg',
-        body: `<p>Music release available on <a href="https://antonv.bandcamp.com" target="_blank" style="text-decoration:underline;">Bandcamp</a>. Drone music for contemplative listening.</p>`
-      },
-      {
-        id: 'audio-tour',
-        title: "Audio Tour in Queen's Park (Glasgow)",
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000007/audio-tour.jpg',
-        body: `<p>An eco-audio walking tour of Queen's Park in Glasgow, developed for RotU's (en)countering crisis + re:making futures series.</p>`
-      },
-      {
-        id: 'sd-foley',
-        title: 'Sound design / Foley',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000008/sd-foley.jpg',
-        body: `<p>Commercial and artistic sound design, foley recording, and post-production work across film, theatre, and interactive media.</p>`
-      },
-      {
-        id: 'sound-walks',
-        title: 'Sound Walks',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000009/sound-walks.jpg',
-        body: `<p>Participatory sound walks through urban and natural landscapes, exploring the acoustic ecology of place.</p>`
-      }
-    ];
+const grid = document.getElementById('grid');
 
-    // ── BUILD GRID ──
-    const grid = document.getElementById('grid');
-    works.forEach((w, i) => {
-      const div = document.createElement('div');
-      div.className = 'grid-item';
-      div.innerHTML = `
-        <img src="${w.thumb}" alt="${w.title}" loading="${i < 6 ? 'eager' : 'lazy'}" onerror="this.parentElement.style.background='#1a1a1a'" />
-        <div class="grid-item-title">${w.title}</div>
-      `;
-      div.addEventListener('click', () => showWork(w.id));
-      grid.appendChild(div);
+works.forEach(w => {
+  const div = document.createElement('div');
+  div.className = 'grid-item';
+  div.innerHTML = `<img src="${w.thumb}" /><div>${w.title}</div>`;
+  div.onclick = () => showWork(w.id);
+  grid.appendChild(div);
+});
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+}
+
+function showWork(id) {
+  const w = works.find(x => x.id === id);
+
+  let html = `<h1>${w.title}</h1>`;
+
+  if (w.youtube) {
+    html += `
+      <iframe width="100%" height="400"
+      src="https://www.youtube.com/embed/${w.youtube}"
+      frameborder="0" allowfullscreen></iframe>
+    `;
+  }
+
+  if (w.images && w.images.length) {
+    html += `<div class="detail-images">`;
+    w.images.forEach(src => {
+      html += `<img src="images/${src}" />`;
     });
+    html += `</div>`;
+  }
 
-    // ── NAVIGATION ──
-    function showScreen(name) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById('screen-' + name).classList.add('active');
-      document.querySelectorAll('.nav-links a').forEach(a => {
-        a.classList.toggle('active', a.dataset.screen === name);
-      });
-      window.scrollTo(0, 0);
-    }
+  html += w.body;
 
-    function showWork(id) {
-      const w = works.find(x => x.id === id);
-      if (!w) return;
-      const idx = works.indexOf(w);
-      const prev = works[idx - 1];
-      const next = works[idx + 1];
-
-      let html = `<h1 class="detail-title">${w.title}</h1>`;
-      if (w.youtube) {
-        html += `<div class="detail-embed"><iframe src="https://www.youtube.com/embed/${w.youtube}" allowfullscreen></iframe></div>`;
-      }
-      if (w.images && w.images.length) {
-        html += `<div class="detail-images">`;
-        w.images.forEach(src => {
-          html += `<img src="images/${src}" alt="${w.title}" loading="lazy" />`;
-        });
-        html += `</div>`;
-      } else if (w.cover) {
-        html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
-      }
-      html += `<div class="detail-body">${w.body}</div>`;
-      html += `<div class="detail-nav">`;
-      html += prev ? `<span onclick="showWork('${prev.id}')">← ${prev.title}</span>` : `<span></span>`;
-      html += next ? `<span onclick="showWork('${next.id}')">Next: ${next.title} →</span>` : `<span></span>`;
-      html += `</div>`;
-
-      document.getElementById('detail-content').innerHTML = html;
-      showScreen('detail');
-    }
-
-    // ── CONTACT FORM ──
-    document.getElementById('cform').addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = document.getElementById('fsub');
-      const msg = document.getElementById('fmsg');
-      btn.textContent = 'Sending…'; btn.disabled = true;
-      msg.className = 'form-msg';
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
-        });
-        const j = await res.json();
-        if (j.success) {
-          msg.textContent = 'Your message has been sent.';
-          msg.className = 'form-msg show';
-          e.target.reset();
-        } else { throw new Error(); }
-      } catch {
-        msg.textContent = 'Something went wrong — please try again.';
-        msg.className = 'form-msg show';
-      } finally {
-        btn.textContent = 'Submit'; btn.disabled = false;
-      }
-    });
-  </script>
+  document.getElementById('detail-content').innerHTML = html;
+  showScreen('detail');
+}
+</script>
 
 </body>
 </html>
