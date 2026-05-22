@@ -428,8 +428,7 @@
         id: 'explore',
         title: 'Explore',
         thumb: '01.webp',
-        images:'03.webp',
-        //  images: ['01.webp', 'IMG_0084_jpg.webp', '03.webp', '02.webp'],
+        images: ['01.webp', 'IMG_0084_jpg.webp', '03.webp', '02.webp'],
         body: `<p><strong>Description</strong><br/>
         Thrilled to share that I received Explore strand funding from Immersive Arts to support the early stages of developing my new project surrender(d).</p>
         <p>This fund gave me the space (and time) to dig into immersive technology; not to master it, but to get lost in it a bit, to see what happens when you let go of polished outcomes and just explore. I spent the last few months testing things, failing, building again, and following where the work wanted to go.</p>
@@ -442,7 +441,7 @@
       {
         id: 'avoid-void',
         title: 'Avoid Void',
-        thumb: 'https://images.squarespace-cdn.com/content/v1/642fc56bbbaf430a1a7b64a6/1680534000001/avoid-void.jpg',
+        thumb: 'avoidvoid.jpg.jpeg',
         body: `<p><em>Avoid Void</em> is an introspective ambient album exploring memory and emotion through generative textures and quiet rhythm.</p>`
       },
       {
@@ -536,7 +535,7 @@
         });
         html += `</div>`;
       } else if (w.cover) {
-        html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
+        html += `<img src="${src}" alt="${w.title}" loading="lazy" />`;
       }
       html += `<div class="detail-body">${w.body}</div>`;
       html += `<div class="detail-nav">`;
