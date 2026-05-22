@@ -518,9 +518,13 @@
       if (w.youtube) {
         html += `<div class="detail-embed"><iframe src="https://www.youtube.com/embed/${w.youtube}" allowfullscreen></iframe></div>`;
       }
-      if (w.cover) {
-        html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
-      }
+      if (w.images && w.images.length) {
+     w.images.forEach(src => {
+    html += `<div class="detail-cover"><img src="${src}" alt="${w.title}" loading="lazy" /></div>`;
+    });
+    } else if (w.cover) {
+     html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
+    }
       html += `<div class="detail-body">${w.body}</div>`;
       html += `<div class="detail-nav">`;
       html += prev ? `<span onclick="showWork('${prev.id}')">← ${prev.title}</span>` : `<span></span>`;
