@@ -49,7 +49,6 @@
       z-index: 100;
       height: var(--nav-h);
       background: var(--white);
-      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -66,7 +65,6 @@
       display: flex;
       gap: 2.5rem;
       list-style: none;
-      align-items: center;
     }
     .nav-links a {
       font-size: 14px;
@@ -81,50 +79,6 @@
       text-underline-offset: 4px;
     }
 
-    /* ── AUDIO BUTTON ── */
-    #audio-btn {
-      background: none;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.2s, opacity 0.2s;
-      padding: 0;
-      flex-shrink: 0;
-    }
-    #audio-btn:hover { border-color: var(--text); }
-    #audio-btn svg { width: 14px; height: 14px; }
-    #audio-btn.playing { border-color: var(--text); }
-
-    /* Waveform bars inside button */
-    .wave-bars {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      height: 14px;
-    }
-    .wave-bars span {
-      display: block;
-      width: 2px;
-      background: var(--text);
-      border-radius: 1px;
-      height: 4px;
-      transition: height 0.1s;
-    }
-    #audio-btn.playing .wave-bars span:nth-child(1) { animation: bar1 0.8s ease-in-out infinite; }
-    #audio-btn.playing .wave-bars span:nth-child(2) { animation: bar2 0.8s ease-in-out infinite 0.15s; }
-    #audio-btn.playing .wave-bars span:nth-child(3) { animation: bar3 0.8s ease-in-out infinite 0.3s; }
-    #audio-btn.playing .wave-bars span:nth-child(4) { animation: bar2 0.8s ease-in-out infinite 0.45s; }
-    #audio-btn.playing .wave-bars span:nth-child(5) { animation: bar1 0.8s ease-in-out infinite 0.6s; }
-
-    @keyframes bar1 { 0%,100%{height:3px} 50%{height:10px} }
-    @keyframes bar2 { 0%,100%{height:6px} 50%{height:14px} }
-    @keyframes bar3 { 0%,100%{height:10px} 50%{height:4px} }
-
     /* ── SCREENS ── */
     .screen {
       display: none;
@@ -133,7 +87,9 @@
     }
     .screen.active { display: block; }
 
-    /* ── IMAGE GRID ── */
+    /* ── IMAGE GRID ──
+       4 columns, 16/10 ratio = slightly smaller, wider rectangles
+    ── */
     .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -201,22 +157,34 @@
       width: 100%;
       margin-bottom: 1.5rem;
     }
-    .detail-cover img { width: 100%; height: auto; display: block; }
+    .detail-cover img {
+      width: 100%; height: auto;
+      display: block;
+    }
     .detail-embed {
       width: 100%;
       aspect-ratio: 16/9;
       background: #000;
       margin-bottom: 1.5rem;
     }
-    .detail-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+    .detail-embed iframe {
+      width: 100%; height: 100%;
+      border: none; display: block;
+    }
     .detail-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
-    .detail-images img { width: 100%; height: auto; display: block; object-fit: cover; }
-    .detail-body { max-width: 600px; }
+    .detail-images img {
+      width: 100%; height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .detail-body {
+      max-width: 600px;
+    }
     .detail-body p {
       font-size: 15px;
       font-weight: 300;
@@ -260,13 +228,6 @@
       max-width: 480px;
       margin: 0 auto;
       padding: 3rem 2rem 6rem;
-    }
-    .contact-intro {
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--muted);
-      margin-bottom: 2rem;
-      line-height: 1.7;
     }
     .cform { display: flex; flex-direction: column; gap: 1.25rem; }
     .fg { display: flex; flex-direction: column; gap: 0.35rem; }
@@ -346,7 +307,6 @@
     }
     @media (max-width: 600px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-item-title { opacity: 1; }
       nav { padding: 0 1.25rem; }
       .nav-links { gap: 1.25rem; }
       .detail-wrap, .about-wrap, .contact-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -362,20 +322,15 @@
       <li><a onclick="showScreen('works')" data-screen="works">Selected Works</a></li>
       <li><a onclick="showScreen('about')" data-screen="about">About me</a></li>
       <li><a onclick="showScreen('contact')" data-screen="contact">Contact</a></li>
-      <li>
-        <button id="audio-btn" title="Toggle ambient sound">
-          <div class="wave-bars">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-        </button>
-      </li>
     </ul>
   </nav>
 
+  <!-- WORKS GRID -->
   <div class="screen active" id="screen-works">
     <div class="grid" id="grid"></div>
   </div>
 
+  <!-- WORK DETAIL -->
   <div class="screen" id="screen-detail">
     <div class="detail-wrap">
       <span class="detail-back" onclick="showScreen('works')">← Selected Works</span>
@@ -383,6 +338,7 @@
     </div>
   </div>
 
+  <!-- ABOUT -->
   <div class="screen" id="screen-about">
     <div class="about-wrap">
       <p>Anton Vasiliadis is a Scotland-based sound designer, technician, and multimedia artist working across immersive performance, experimental audio, and interactive installations. With a background in music production and sound design, he works across audio, immersive performance, and creative code.</p>
@@ -391,9 +347,9 @@
     </div>
   </div>
 
+  <!-- CONTACT -->
   <div class="screen" id="screen-contact">
     <div class="contact-wrap">
-      <p class="contact-intro">Get in touch about commissions, collaborations, sound design, or anything else.</p>
       <form class="cform" id="cform" novalidate>
         <input type="hidden" name="access_key" value="9a358c0f-0782-4673-944a-2083c893ecbd" />
         <input type="hidden" name="subject" value="New message — antonvaudio.uk" />
@@ -433,10 +389,9 @@
   </footer>
 
   <script>
-    // ================================================================
-    //  WORKS DATA
-    // ================================================================
     const works = [
+
+      // ── 1. KISSYRIS ──────────────────────────────────────────────
       {
         id: 'kissyris',
         title: 'Kissyris',
@@ -455,10 +410,13 @@
           Dora Zoi — performance, text and narration</p>
         `
       },
+      
+
+      // ── 2. SURRENDER(D) ──────────────────────────────────────────
       {
         id: 'surrender',
         title: 'Surrender(d)',
-        thumb: 'https://static1.squarespace.com/static/642fc56bbbaf430a1a7b64a6/642fc6072e224e44337714ba/6895dbb643edfd1e173f298b/1754652588842/Screenshot+2025-08-08+121443.png?format=750w',
+        thumb: '01.webp',
         youtube: 'h6ithpvvg1A',
         body: `
           <p><strong><em>Surrender(d)</em></strong> is an immersive audiovisual installation
@@ -468,6 +426,8 @@
           in August 2025.</p>
         `
       },
+
+      // ── 3. EXPLORE ───────────────────────────────────────────────
       {
         id: 'explore',
         title: 'Explore',
@@ -493,6 +453,8 @@
           <p>More soon x</p>
         `
       },
+
+      // ── 4. AVOID VOID ────────────────────────────────────────────
       {
         id: 'avoid-void',
         title: 'Avoid Void',
@@ -507,6 +469,8 @@
           explore and find your own meaning within them.</p>
         `
       },
+
+      // ── 5. DESERT ECHOES ─────────────────────────────────────────
       {
         id: 'desert-echoes',
         title: 'Desert Echoes',
@@ -523,6 +487,8 @@
           </div>
         `
       },
+
+      // ── 6. BODY KNOTS ────────────────────────────────────────────
       {
         id: 'body-knots',
         title: 'Body Knots (Film)',
@@ -536,9 +502,12 @@
           can become another's nightmare.</p>
           <p>Written and directed by Kevin Pickering.<br/>
           Sound recordist and music by Anton Vasiliadis.</p>
+          <p>The film explores themes of liminality and psychological fragmentation.</p>
           <p><a href="https://www.imdb.com/title/tt19394230/?ref_=nm_flmg_t_1_dr" target="_blank" rel="noopener">View on IMDb</a></p>
         `
       },
+
+      // ── 7. GEMUTLIG ──────────────────────────────────────────────
       {
         id: 'gemutlig',
         title: 'Gemutlig (Art Installation)',
@@ -549,6 +518,8 @@
           within shared space.</p>
         `
       },
+
+      // ── 8. LIVE ELECTRONICS ──────────────────────────────────────
       {
         id: 'live-electronics',
         title: 'Live electronics',
@@ -558,6 +529,8 @@
           synthesis, field recording, and real-time processing.</p>
         `
       },
+
+      // ── 9. HOLLOW SKY ────────────────────────────────────────────
       {
         id: 'hollow-sky',
         title: 'Hollow Sky (music)',
@@ -567,6 +540,8 @@
           Drone music for contemplative listening.</p>
         `
       },
+
+      // ── 10. AUDIO TOUR ───────────────────────────────────────────
       {
         id: 'audio-tour',
         title: "Audio Tour in Queen's Park (Glasgow)",
@@ -576,6 +551,8 @@
           (en)countering crisis + re:making futures series.</p>
         `
       },
+
+      // ── 11. SOUND DESIGN / FOLEY ─────────────────────────────────
       {
         id: 'sd-foley',
         title: 'Sound design / Foley',
@@ -585,6 +562,8 @@
           across film, theatre, and interactive media.</p>
         `
       },
+
+      // ── 12. SOUND WALKS ──────────────────────────────────────────
       {
         id: 'sound-walks',
         title: 'Sound Walks',
@@ -594,160 +573,24 @@
           acoustic ecology of place.</p>
         `
       }
+
     ];
 
-    // ================================================================
-    //  AUDIO ENGINE
-    //  - Ambient generative drone (layered sine oscillators + filter)
-    //  - Grid hover tones (each tile = unique pitch, soft bell tone)
-    //  - All Web Audio API — no files, no libraries
-    // ================================================================
-
-    let audioCtx = null;
-    let masterGain = null;
-    let droneNodes = [];
-    let isPlaying = false;
-    let hoverEnabled = false;
-
-    // Pitches for each of the 12 grid tiles — pentatonic-ish scale
-    const hoverFreqs = [130.8, 146.8, 164.8, 185.0, 196.0, 220.0,
-                        246.9, 261.6, 293.7, 329.6, 370.0, 392.0];
-
-    function initAudio() {
-      if (audioCtx) return;
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = audioCtx.createGain();
-      masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
-      masterGain.connect(audioCtx.destination);
-    }
-
-    function buildDrone() {
-      // Three detuned oscillators through a lowpass filter — slow evolving drone
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.value = 400;
-      filter.Q.value = 0.8;
-      filter.connect(masterGain);
-
-      // Slowly modulate filter cutoff for movement
-      const lfo = audioCtx.createOscillator();
-      const lfoGain = audioCtx.createGain();
-      lfo.frequency.value = 0.07;
-      lfoGain.gain.value = 120;
-      lfo.connect(lfoGain);
-      lfoGain.connect(filter.frequency);
-      lfo.start();
-
-      // Three oscillator layers
-      const freqs   = [55, 55.3, 82.5];
-      const detunes = [0, 8, -5];
-      const gains   = [0.18, 0.12, 0.10];
-
-      freqs.forEach((freq, i) => {
-        const osc  = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.value = freq;
-        osc.detune.value = detunes[i];
-        gain.gain.value = gains[i];
-        osc.connect(gain);
-        gain.connect(filter);
-        osc.start();
-        droneNodes.push(osc, gain);
-      });
-
-      // Subtle high shimmer
-      const shimOsc  = audioCtx.createOscillator();
-      const shimGain = audioCtx.createGain();
-      shimOsc.type = 'sine';
-      shimOsc.frequency.value = 660;
-      shimGain.gain.value = 0.02;
-      shimOsc.connect(shimGain);
-      shimGain.connect(masterGain);
-      shimOsc.start();
-      droneNodes.push(shimOsc, shimGain);
-    }
-
-    function startAudio() {
-      initAudio();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      if (droneNodes.length === 0) buildDrone();
-      masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-      masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
-      masterGain.gain.linearRampToValueAtTime(0.4, audioCtx.currentTime + 3.5);
-      isPlaying = true;
-      hoverEnabled = true;
-      document.getElementById('audio-btn').classList.add('playing');
-    }
-
-    function stopAudio() {
-      if (!masterGain) return;
-      masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-      masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
-      masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 2);
-      isPlaying = false;
-      hoverEnabled = false;
-      document.getElementById('audio-btn').classList.remove('playing');
-    }
-
-    function playHoverTone(index) {
-      if (!hoverEnabled || !audioCtx) return;
-      const freq = hoverFreqs[index % hoverFreqs.length];
-      const now  = audioCtx.currentTime;
-
-      const osc  = audioCtx.createOscillator();
-      const env  = audioCtx.createGain();
-      const filt = audioCtx.createBiquadFilter();
-
-      osc.type = 'sine';
-      osc.frequency.value = freq;
-      filt.type = 'bandpass';
-      filt.frequency.value = freq * 2;
-      filt.Q.value = 2;
-
-      env.gain.setValueAtTime(0, now);
-      env.gain.linearRampToValueAtTime(0.15, now + 0.01);
-      env.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-
-      osc.connect(filt);
-      filt.connect(env);
-      env.connect(audioCtx.destination);
-      osc.start(now);
-      osc.stop(now + 1.3);
-    }
-
-    document.getElementById('audio-btn').addEventListener('click', () => {
-      if (isPlaying) { stopAudio(); } else { startAudio(); }
-    });
-
-    // ================================================================
-    //  BUILD GRID
-    // ================================================================
+    // ── BUILD GRID ──
     const grid = document.getElementById('grid');
     works.forEach((w, i) => {
       const div = document.createElement('div');
       div.className = 'grid-item';
       div.innerHTML = `
-        <img src="${w.thumb}" alt="${w.title}" loading="${i < 8 ? 'eager' : 'lazy'}"
-          onerror="this.parentElement.style.background='#2a2a2a'" />
+        <img src="${w.thumb}" alt="${w.title}" loading="${i < 8 ? 'eager' : 'lazy'}" onerror="this.parentElement.style.background='#2a2a2a'" />
         <div class="grid-item-title">${w.title}</div>
       `;
-      div.addEventListener('mouseenter', () => playHoverTone(i));
       div.addEventListener('click', () => showWork(w.id));
       grid.appendChild(div);
     });
 
-    // ================================================================
-    //  NAVIGATION
-    // ================================================================
+    // ── NAVIGATION ──
     function showScreen(name) {
-      const titles = {
-        works:   'antonvaudio',
-        about:   'About — antonvaudio',
-        contact: 'Contact — antonvaudio',
-        detail:  'antonvaudio'
-      };
-      document.title = titles[name] || 'antonvaudio';
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + name).classList.add('active');
       document.querySelectorAll('.nav-links a').forEach(a => {
@@ -756,22 +599,27 @@
       window.scrollTo(0, 0);
     }
 
+    // ── SHOW WORK DETAIL ──
     function showWork(id) {
       const w = works.find(x => x.id === id);
       if (!w) return;
-      const idx  = works.indexOf(w);
+      const idx = works.indexOf(w);
       const prev = works[idx - 1];
       const next = works[idx + 1];
 
-      document.title = `${w.title} — antonvaudio`;
-
       let html = `<h1 class="detail-title">${w.title}</h1>`;
+
+      // Cover image — shows first
       if (w.cover) {
         html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
       }
+
+      // YouTube embed
       if (w.youtube) {
         html += `<div class="detail-embed"><iframe src="https://www.youtube.com/embed/${w.youtube}" allowfullscreen></iframe></div>`;
       }
+
+      // Multiple images in 2-col grid
       if (w.images && w.images.length) {
         html += `<div class="detail-images">`;
         w.images.forEach(src => {
@@ -779,7 +627,11 @@
         });
         html += `</div>`;
       }
+
+      // Body text
       html += `<div class="detail-body">${w.body}</div>`;
+
+      // Prev / next
       html += `<div class="detail-nav">`;
       html += prev ? `<span onclick="showWork('${prev.id}')">← ${prev.title}</span>` : `<span></span>`;
       html += next ? `<span onclick="showWork('${next.id}')">Next: ${next.title} →</span>` : `<span></span>`;
@@ -789,9 +641,7 @@
       showScreen('detail');
     }
 
-    // ================================================================
-    //  CONTACT FORM
-    // ================================================================
+    // ── CONTACT FORM ──
     document.getElementById('cform').addEventListener('submit', async e => {
       e.preventDefault();
       const btn = document.getElementById('fsub');
