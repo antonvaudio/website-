@@ -585,7 +585,7 @@
       const div = document.createElement('div');
       div.className = 'grid-item';
       div.innerHTML = `
-        <img src="${w.thumb}" alt="${w.title}" loading="${i < 8 ? 'eager' : 'lazy'}" onerror="this.parentElement.style.background='#2a2a2a'" />
+        <img src="${w.thumb}" alt="${w.title}" style="object-position:${w.thumbPosition || 'center center'}" loading="${i < 8 ? 'eager' : 'lazy'}" onerror="this.parentElement.style.background='#2a2a2a'" />
         <div class="grid-item-title">${w.title}</div>
       `;
       div.addEventListener('click', () => showWork(w.id));
