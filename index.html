@@ -21,7 +21,6 @@
 
     :root {
       --white: #ffffff;
-      --black: #000000;
       --text: #111111;
       --muted: #666;
       --border: #e8e8e8;
@@ -55,7 +54,6 @@
       justify-content: space-between;
       padding: 0 2rem;
     }
-
     .nav-logo {
       font-size: 18px;
       font-weight: 700;
@@ -63,13 +61,11 @@
       color: var(--text);
       cursor: pointer;
     }
-
     .nav-links {
       display: flex;
       gap: 2.5rem;
       list-style: none;
     }
-
     .nav-links a {
       font-size: 14px;
       font-weight: 400;
@@ -77,9 +73,7 @@
       cursor: pointer;
       transition: opacity 0.15s;
     }
-
     .nav-links a:hover { opacity: 0.5; }
-
     .nav-links a.active {
       text-decoration: underline;
       text-underline-offset: 4px;
@@ -93,54 +87,54 @@
     }
     .screen.active { display: block; }
 
-    /* ── IMAGE GRID ── */
+    /* ── IMAGE GRID ──
+       4 columns, 16/10 ratio = slightly smaller, wider rectangles
+    ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: #e0e0e0;
     }
-
     .grid-item {
       position: relative;
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/10;
       overflow: hidden;
       cursor: pointer;
-      background: #111;
+      background: #222;
     }
-
     .grid-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: opacity 0.3s;
+      transition: transform 0.35s ease, opacity 0.35s ease;
     }
-
-    .grid-item:hover img { opacity: 0.7; }
-
+    .grid-item:hover img {
+      transform: scale(1.04);
+      opacity: 0.75;
+    }
     .grid-item-title {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 2rem 1.25rem 1.25rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      padding: 1.5rem 1rem 0.85rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
       color: #fff;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 400;
+      letter-spacing: 0.01em;
       opacity: 0;
       transition: opacity 0.25s;
     }
-
     .grid-item:hover .grid-item-title { opacity: 1; }
 
     /* ── WORK DETAIL ── */
     #screen-detail { padding-bottom: 6rem; }
-
     .detail-wrap {
       max-width: 860px;
       margin: 0 auto;
       padding: 3rem 2rem 0;
     }
-
     .detail-back {
       display: inline-flex;
       align-items: center;
@@ -152,7 +146,6 @@
       transition: color 0.15s;
     }
     .detail-back:hover { color: var(--text); }
-
     .detail-title {
       font-size: clamp(1.4rem, 3vw, 2rem);
       font-weight: 700;
@@ -160,7 +153,14 @@
       line-height: 1.2;
       margin-bottom: 2rem;
     }
-
+    .detail-cover {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    .detail-cover img {
+      width: 100%; height: auto;
+      display: block;
+    }
     .detail-embed {
       width: 100%;
       aspect-ratio: 16/9;
@@ -171,16 +171,6 @@
       width: 100%; height: 100%;
       border: none; display: block;
     }
-
-    .detail-cover {
-      width: 100%;
-      margin-bottom: 1.5rem;
-    }
-    .detail-cover img {
-      width: 100%; height: auto;
-      display: block;
-    }
-
     .detail-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -190,8 +180,8 @@
     .detail-images img {
       width: 100%; height: auto;
       display: block;
+      object-fit: cover;
     }
-
     .detail-body {
       max-width: 600px;
     }
@@ -204,7 +194,8 @@
     }
     .detail-body strong { font-weight: 600; }
     .detail-body em { font-style: italic; }
-
+    .detail-body a { text-decoration: underline; }
+    .detail-body a:hover { opacity: 0.6; }
     .detail-nav {
       display: flex;
       justify-content: space-between;
@@ -238,11 +229,8 @@
       margin: 0 auto;
       padding: 3rem 2rem 6rem;
     }
-
     .cform { display: flex; flex-direction: column; gap: 1.25rem; }
-
     .fg { display: flex; flex-direction: column; gap: 0.35rem; }
-
     .fg label {
       font-size: 12px;
       font-weight: 500;
@@ -250,7 +238,6 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-
     .fg input, .fg textarea, .fg select {
       background: var(--white);
       border: 1px solid #ccc;
@@ -264,6 +251,7 @@
       width: 100%;
       transition: border-color 0.15s;
       -webkit-appearance: none;
+      appearance: none;
     }
     .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--text); }
     .fg textarea { resize: vertical; min-height: 130px; }
@@ -274,7 +262,6 @@
       padding-right: 2rem;
       cursor: pointer;
     }
-
     .form-submit {
       font-family: var(--font);
       font-size: 13px;
@@ -290,7 +277,6 @@
     }
     .form-submit:hover { opacity: 0.7; }
     .form-submit:disabled { opacity: 0.4; cursor: default; }
-
     .form-msg { font-size: 13px; color: var(--muted); display: none; }
     .form-msg.show { display: block; }
 
@@ -316,15 +302,15 @@
     footer a:hover { color: var(--text); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
       nav { padding: 0 1.25rem; }
       .nav-links { gap: 1.25rem; }
       .detail-wrap, .about-wrap, .contact-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
       .detail-images { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -401,138 +387,207 @@
   </div>
 
   <footer>
-    <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.instagram.com/antonvaudio" target="_blank" rel="noopener">Instagram</a>
     <a href="https://antonv.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a>
   </footer>
 
   <script>
     const works = [
+
+      // ── 1. KISSYRIS ──────────────────────────────────────────────
       {
         id: 'kissyris',
         title: 'Kissyris',
         thumb: 'Still+2026-05-14+003125_1.1.1.jpg.jpeg',
         youtube: 'd4XbtKQDlgg',
-        body: `<p><strong>Description</strong><br/><em>Kissyris</em> is a moving image work created in response to Avlaki in Nisyros, engaging with the landscape and memories of the place. The film combines field recordings, participant voices, and original composition to create a nuanced portrait of place and time.</p>
-        <p>Its layered soundtrack brings together field recordings from the village festival that took place a few days earlier, alongside an original musical composition accompanying the video. The work invites reflection on how we encounter and remember place.</p>
-        <p><strong>Credits</strong><br/>Antonis Vasiliadis — sound, video editing and montage<br/>Dora Zoi — performance, text and narration</p>`
+        body: `
+          <p><strong>Description</strong><br/>
+          <em>Kissyris</em> is a moving image work created in response to Avlaki in Nisyros,
+          engaging with the landscape and memories of the place. The film combines field recordings,
+          participant voices, and original composition to create a nuanced portrait of place and time.</p>
+          <p>Its layered soundtrack brings together field recordings from the village festival
+          that took place a few days earlier, alongside an original musical composition accompanying
+          the video. The work invites reflection on how we encounter and remember place.</p>
+          <p><strong>Credits</strong><br/>
+          Antonis Vasiliadis — sound, video editing and montage<br/>
+          Dora Zoi — performance, text and narration</p>
+        `
       },
+
+      // ── 2. SURRENDER(D) ──────────────────────────────────────────
       {
         id: 'surrender',
         title: 'Surrender(d)',
         thumb: 'https://static1.squarespace.com/static/642fc56bbbaf430a1a7b64a6/642fc6072e224e44337714ba/6895dbb643edfd1e173f298b/1754652588842/Screenshot+2025-08-08+121443.png?format=750w',
         youtube: 'h6ithpvvg1A',
-        body: `<p><strong><em>Surrender(d)</em></strong> is an immersive audiovisual installation exploring breath, presence, and release.</p>
-        <p>A custom breath sensor shapes a continuous drone, while projected particles respond in real time, creating a meditative, dreamlike space. Filmed at Edinburgh College of Art in August 2025.</p>`
+        body: `
+          <p><strong><em>Surrender(d)</em></strong> is an immersive audiovisual installation
+          exploring breath, presence, and release.</p>
+          <p>A custom breath sensor shapes a continuous drone, while projected particles respond
+          in real time, creating a meditative, dreamlike space. Filmed at Edinburgh College of Art
+          in August 2025.</p>
+        `
       },
+
+      // ── 3. EXPLORE ───────────────────────────────────────────────
       {
         id: 'explore',
         title: 'Explore',
         thumb: '01.webp',
         images: ['01.webp', 'IMG_0084_jpg.webp', '03.webp', '02.webp'],
-        body: `<p><strong>Description</strong><br/>
-        Thrilled to share that I received Explore strand funding from Immersive Arts to support the early stages of developing my new project surrender(d).</p>
-        <p>This fund gave me the space (and time) to dig into immersive technology; not to master it, but to get lost in it a bit, to see what happens when you let go of polished outcomes and just explore. I spent the last few months testing things, failing, building again, and following where the work wanted to go.</p>
-        <p>As part of this, I visited some incredible exhibitions and shows in Isle of Lewis, Liverpool, and Bradford; each one nudging the project in new directions.</p>
-        <p>The support also helped me get my hands on some essential tools; sensors, software, books — things that will stay with me long after this phase ends.</p>
-        <p>I shared a work-in-progress at Surge in Glasgow, and the feedback there was generous, thoughtful, and exactly what I needed. Thank you to everyone who engaged with the piece; it really kept me going.</p>
-        <p>Since then, I've been pulling the threads together, reworking the installation, experimenting with interaction, sound, and space. It's not done yet. But it's getting there.</p>
-        <p>More soon x</p>`
+        body: `
+          <p><strong>Description</strong><br/>
+          Thrilled to share that I received Explore strand funding from Immersive Arts to support
+          the early stages of developing my new project surrender(d).</p>
+          <p>This fund gave me the space (and time) to dig into immersive technology; not to master
+          it, but to get lost in it a bit, to see what happens when you let go of polished outcomes
+          and just explore. I spent the last few months testing things, failing, building again,
+          and following where the work wanted to go.</p>
+          <p>As part of this, I visited some incredible exhibitions and shows in Isle of Lewis,
+          Liverpool, and Bradford; each one nudging the project in new directions.</p>
+          <p>The support also helped me get my hands on some essential tools; sensors, software,
+          books — things that will stay with me long after this phase ends.</p>
+          <p>I shared a work-in-progress at Surge in Glasgow, and the feedback there was generous,
+          thoughtful, and exactly what I needed. Thank you to everyone who engaged with the piece;
+          it really kept me going.</p>
+          <p>Since then, I've been pulling the threads together, reworking the installation,
+          experimenting with interaction, sound, and space. It's not done yet. But it's getting there.</p>
+          <p>More soon x</p>
+        `
       },
-      {
-       id: 'avoid-void',
-       title: 'Avoid Void',
-       thumb: 'avoidvoid.jpg.jpeg',
-       cover: 'avoidvoid.jpg.jpeg',
-       youtube: 'JigMg0oJ9I0',
-       body: `<p><em>Avoid Void</em> is an album where I tried to find the essence in my music, blending ambient sounds and rhythms to explore introspection and wonder. From the quiet poem in "Avoid Void" to the soft echoes of "Ethereal Fragments," each track is a piece of my journey into discovery and connection. I hope these sounds offer you a moment to explore and find your own meaning within them.</p>`
-},
-      {
-  id: 'desert-echoes',
-  title: 'Desert Echoes',
-  thumb: 'desert echoes.jpg.jpeg',
-  cover: 'desert echoes.jpg.jpeg',
-  body: `
-    <p>
-      Desert Echoes is a gentle exploration of sound that reflects personal experiences. Anton invites listeners to journey through layered textures and immersive soundscapes, where each track shares a personal story that may resonate with others. This EP offers a moment to pause and reflect, creating an experience that lingers in the mind long after the music fades.
-    </p>
 
-    <div style="margin-top:2rem;">
-      <iframe 
-        style="border:0; width:100%; max-width:350px; height:470px;"
-        src="https://bandcamp.com/EmbeddedPlayer/album=218596504/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
-        seamless>
-        <a href="https://antonv.bandcamp.com/album/desert-echoes">
-          Desert Echoes by αntonv
-        </a>
-      </iframe>
-    </div>
-  `
-},
+      // ── 4. AVOID VOID ────────────────────────────────────────────
+      {
+        id: 'avoid-void',
+        title: 'Avoid Void',
+        thumb: 'avoidvoid.jpg.jpeg',
+        cover: 'avoidvoid.jpg.jpeg',
+        youtube: 'JigMg0oJ9I0',
+        body: `
+          <p><em>Avoid Void</em> is an album where I tried to find the essence in my music,
+          blending ambient sounds and rhythms to explore introspection and wonder. From the quiet
+          poem in "Avoid Void" to the soft echoes of "Ethereal Fragments," each track is a piece
+          of my journey into discovery and connection. I hope these sounds offer you a moment to
+          explore and find your own meaning within them.</p>
+        `
+      },
+
+      // ── 5. DESERT ECHOES ─────────────────────────────────────────
+      {
+        id: 'desert-echoes',
+        title: 'Desert Echoes',
+        thumb: 'desert echoes.jpg.jpeg',
+        cover: 'desert echoes.jpg.jpeg',
+        body: `
+          <p>Desert Echoes is a gentle exploration of sound that reflects personal experiences.
+          Anton invites listeners to journey through layered textures and immersive soundscapes,
+          where each track shares a personal story that may resonate with others. This EP offers
+          a moment to pause and reflect, creating an experience that lingers in the mind long
+          after the music fades.</p>
+          <div style="margin-top:2rem;">
+            <iframe
+              style="border:0; width:100%; max-width:350px; height:470px;"
+              src="https://bandcamp.com/EmbeddedPlayer/album=218596504/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
+              seamless>
+              <a href="https://antonv.bandcamp.com/album/desert-echoes">Desert Echoes by αntonv</a>
+            </iframe>
+          </div>
+        `
+      },
+
+      // ── 6. BODY KNOTS ────────────────────────────────────────────
       {
         id: 'body-knots',
         title: 'Body Knots (Film)',
         thumb: 'BK.webp',
         body: `
-          <p><em>Body Knots</em> explores struggles with frustration, identity, and the extreme lengths people will go to in order to shed their skin and escape their current limbo. The characters confront their obsessions and chase their dreams — but one person’s dream can become another’s nightmare.</p>
-
-          <p>Written and directed by Kevin Pickering.<br>
+          <p><em>Body Knots</em> explores struggles with frustration, identity, and the extreme
+          lengths people will go to in order to shed their skin and escape their current limbo.
+          The characters confront their obsessions and chase their dreams — but one person's dream
+          can become another's nightmare.</p>
+          <p>Written and directed by Kevin Pickering.<br/>
           Sound recordist and music by Anton Vasiliadis.</p>
-
           <p>The film explores themes of liminality and psychological fragmentation.</p>
-
-          <p>
-            <a href="https://www.imdb.com/title/tt19394230/?ref_=nm_flmg_t_1_dr" target="_blank" rel="noopener noreferrer">
-              View on IMDb
-            </a>
-          </p>
+          <p><a href="https://www.imdb.com/title/tt19394230/?ref_=nm_flmg_t_1_dr" target="_blank" rel="noopener">View on IMDb</a></p>
         `
       },
+
+      // ── 7. GEMUTLIG ──────────────────────────────────────────────
       {
         id: 'gemutlig',
         title: 'Gemutlig (Art Installation)',
         thumb: 'gemutlig.jpg.jpeg',
-        body: `<p><em>Gemütlig</em> is a tactile sound environment created as part of the Verbena Blue Collective, using contact microphones, rope, and Max/MSP to evoke isolation and connection within shared space.</p>`
+        body: `
+          <p><em>Gemütlig</em> is a tactile sound environment created as part of the Verbena Blue
+          Collective, using contact microphones, rope, and Max/MSP to evoke isolation and connection
+          within shared space.</p>
+        `
       },
+
+      // ── 8. LIVE ELECTRONICS ──────────────────────────────────────
       {
         id: 'live-electronics',
         title: 'Live electronics',
         thumb: 'avi.webp',
-        body: `<p>Ongoing live electronics practice — solo and collaborative performances exploring synthesis, field recording, and real-time processing.</p>`
+        body: `
+          <p>Ongoing live electronics practice — solo and collaborative performances exploring
+          synthesis, field recording, and real-time processing.</p>
+        `
       },
+
+      // ── 9. HOLLOW SKY ────────────────────────────────────────────
       {
         id: 'hollow-sky',
         title: 'Hollow Sky (music)',
         thumb: 'antonv-hollowsky.webp',
-        body: `<p>Music release available on <a href="https://antonv.bandcamp.com" target="_blank" style="text-decoration:underline;">Bandcamp</a>. Drone music for contemplative listening.</p>`
+        body: `
+          <p>Music release available on <a href="https://antonv.bandcamp.com" target="_blank">Bandcamp</a>.
+          Drone music for contemplative listening.</p>
+        `
       },
+
+      // ── 10. AUDIO TOUR ───────────────────────────────────────────
       {
         id: 'audio-tour',
         title: "Audio Tour in Queen's Park (Glasgow)",
         thumb: 'soundwalks.jpg.jpeg',
-        body: `<p>An eco-audio walking tour of Queen's Park in Glasgow, developed for RotU's (en)countering crisis + re:making futures series.</p>`
+        body: `
+          <p>An eco-audio walking tour of Queen's Park in Glasgow, developed for RotU's
+          (en)countering crisis + re:making futures series.</p>
+        `
       },
+
+      // ── 11. SOUND DESIGN / FOLEY ─────────────────────────────────
       {
         id: 'sd-foley',
         title: 'Sound design / Foley',
         thumb: 'foley.jpg.jpeg',
-        body: `<p>Commercial and artistic sound design, foley recording, and post-production work across film, theatre, and interactive media.</p>`
+        body: `
+          <p>Commercial and artistic sound design, foley recording, and post-production work
+          across film, theatre, and interactive media.</p>
+        `
       },
+
+      // ── 12. SOUND WALKS ──────────────────────────────────────────
       {
         id: 'sound-walks',
         title: 'Sound Walks',
         thumb: 'artworks-000501023484-b04fbq-t500x500.jpg.jpeg',
-        body: `<p>Participatory sound walks through urban and natural landscapes, exploring the acoustic ecology of place.</p>`
+        body: `
+          <p>Participatory sound walks through urban and natural landscapes, exploring the
+          acoustic ecology of place.</p>
+        `
       }
+
     ];
 
-    
     // ── BUILD GRID ──
     const grid = document.getElementById('grid');
     works.forEach((w, i) => {
       const div = document.createElement('div');
       div.className = 'grid-item';
       div.innerHTML = `
-        <img src="${w.thumb}" alt="${w.title}" loading="${i < 6 ? 'eager' : 'lazy'}" onerror="this.parentElement.style.background='#1a1a1a'" />
+        <img src="${w.thumb}" alt="${w.title}" loading="${i < 8 ? 'eager' : 'lazy'}" onerror="this.parentElement.style.background='#2a2a2a'" />
         <div class="grid-item-title">${w.title}</div>
       `;
       div.addEventListener('click', () => showWork(w.id));
@@ -549,6 +604,7 @@
       window.scrollTo(0, 0);
     }
 
+    // ── SHOW WORK DETAIL ──
     function showWork(id) {
       const w = works.find(x => x.id === id);
       if (!w) return;
@@ -557,23 +613,30 @@
       const next = works[idx + 1];
 
       let html = `<h1 class="detail-title">${w.title}</h1>`;
+
+      // Cover image — shows first
+      if (w.cover) {
+        html += `<div class="detail-cover"><img src="${w.cover}" alt="${w.title}" /></div>`;
+      }
+
+      // YouTube embed
       if (w.youtube) {
         html += `<div class="detail-embed"><iframe src="https://www.youtube.com/embed/${w.youtube}" allowfullscreen></iframe></div>`;
       }
+
+      // Multiple images in 2-col grid
       if (w.images && w.images.length) {
         html += `<div class="detail-images">`;
         w.images.forEach(src => {
-          html += `<img src="images/${src}" alt="${w.title}" loading="lazy" />`;
+          html += `<img src="${src}" alt="${w.title}" loading="lazy" />`;
         });
         html += `</div>`;
-      } else if (w.cover) {
-  html += `
-    <div class="detail-cover">
-      <img src="${w.cover}" alt="${w.title}" loading="lazy" />
-    </div>
-  `;
-}
+      }
+
+      // Body text
       html += `<div class="detail-body">${w.body}</div>`;
+
+      // Prev / next
       html += `<div class="detail-nav">`;
       html += prev ? `<span onclick="showWork('${prev.id}')">← ${prev.title}</span>` : `<span></span>`;
       html += next ? `<span onclick="showWork('${next.id}')">Next: ${next.title} →</span>` : `<span></span>`;
